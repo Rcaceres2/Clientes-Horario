@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educa.ISIEMP</title>
+  <link rel="stylesheet" href="css/styles.css">
+    
 </head>
 <body>
-    
+  <header>
+    <h1>Gestor de Horarios</h1>
+    <div id="info-uc">UC Seleccionadas: 0 / 28</div>
+  </header>
+
+  <nav>
+    <button class="tab-btn active" data-view="catalogo">Catálogo</button>
+    <button class="tab-btn" data-view="seleccion">Selección</button>
+    <button class="tab-btn" data-view="manual">Manuales</button>
+    <button class="tab-btn" data-view="generador">Generador</button>
+    <button class="tab-btn" data-view="resumen" id="tab-resumen" disabled>Definitivo</button>
+  </nav>
+
+  <main>
+    <section id="vista-catalogo" class="view active">
+      <div class="filter-box">
+        <input type="text" id="buscar-mat" placeholder="Buscar materia...">
+        <select id="filtro-trim">
+          <option value="">Todos los trimestres</option>
+          <option value="1">Trimestre 1</option>
+          <option value="2">Trimestre 2</option>
+          <option value="3">Trimestre 3</option>
+          <option value="4">Trimestre 4</option>
+          <option value="5">Trimestre 5</option>
+        </select>
+      </div>
+      <div id="lista-catalogo" class="grid-container"></div>
+    </section>
+
 </body>
 </html>

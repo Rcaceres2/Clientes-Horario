@@ -37,5 +37,28 @@
       <div id="lista-catalogo" class="grid-container"></div>
     </section>
 
+    <section id="vista-seleccion" class="view">
+      <h2>Materias y Secciones Seleccionadas</h2>
+      <div id="lista-seleccionadas"></div>
+      <button id="btn-ir-generador" class="primary-btn">Ir al Generador de Horarios</button>
+    </section>
+
+    <section id="vista-manual" class="view">
+      <h2>Registro Manual de Secciones</h2>
+      <form id="form-manual">
+        <select id="select-mat-manual" required>
+          <option value="">Seleccione una materia...</option>
+        </select>
+        <select id="select-sec-manual" required>
+          <option value="">Seleccione una sección...</option>
+        </select>
+        <button type="submit" class="primary-btn">Agregar Sección</button>
+      </form>
+      <div id="mensaje-manual"></div>
+    </section>
+
+  <script src="data/bloques.js"></script>
+  <script src="data/materias.js"></script>
 </body>
 </html>
+2

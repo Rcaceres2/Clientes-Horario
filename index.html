@@ -47,18 +47,45 @@
       <h2>Registro Manual de Secciones</h2>
       <form id="form-manual">
         <select id="select-mat-manual" required>
-          <option value="">Seleccione una materia...</option>
+          <option value="">Seleccione una materia</option>
         </select>
         <select id="select-sec-manual" required>
-          <option value="">Seleccione una sección...</option>
+          <option value="">Seleccione una sección</option>
         </select>
         <button type="submit" class="primary-btn">Agregar Sección</button>
       </form>
       <div id="mensaje-manual"></div>
     </section>
 
+    <section id="vista-generador" class="view">
+      <h2>Generador Automático de Horarios</h2>
+      <div class="preferences-box">
+        <h3>Preferencias de Horario</h3>
+        <label>
+          <input type="checkbox" id="pref-mananas"> Priorizar Clases en la Mañana
+        </label>
+        <label>
+          <input type="checkbox" id="pref-tardes"> Priorizar Clases en la Tarde
+        </label>
+        <label>
+          <input type="range" id="pref-ventanas" min="0" max="2" value="1">
+        </label>
+        <button id="btn-generar" class="primary-btn">Generar Combinaciones</button>
+      </div>
+      <div id="resultados-generador"></div>
+    </section>
+
+    <section id="vista-resumen" class="view">
+      <h2>Horario Académico Definitivo</h2>
+      <div class="actions-bar">
+        <button id="btn-imprimir" class="secondary-btn">Imprimir</button>
+      </div>
+      <div id="tabla-horario-container">
+      </div>
+    </section>
+  </main>
+
   <script src="data/bloques.js"></script>
   <script src="data/materias.js"></script>
 </body>
 </html>
-2

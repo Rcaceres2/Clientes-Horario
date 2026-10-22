@@ -1,0 +1,24 @@
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  header, nav, .actions-bar, .filter-box, button {
+    display: none !important;
+  }
+  .view {
+    display: none !important;
+  }
+  #vista-resumen {
+    display: block !important;
+    box-shadow: none;
+    padding: 0;
+  }
+  .horario-grid {
+    border: 1px solid #000;
+  }
+  .horario-cell {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+}

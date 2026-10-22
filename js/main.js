@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Pestañas de navegación
   const buttons = document.querySelectorAll('.tab-btn');
   buttons.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -12,3 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById(viewId).classList.add('active');
     });
   });
+
+  Catalogo.init();
+  Manual.init();
+  Generador.init();
+
+  document.getElementById('btn-imprimir').addEventListener('click', () => window.print());
+});

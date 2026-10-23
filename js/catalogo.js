@@ -7,13 +7,16 @@ const Catalogo = {
 
   render() {
     const contenedor = document.getElementById('lista-catalogo');
+    if (!contenedor) return;
+
     const filtroTexto = document.getElementById('buscar-mat').value.toLowerCase();
     const filtroTrim = document.getElementById('filtro-trim').value;
 
     contenedor.innerHTML = '';
 
     const materiasFiltradas = MATERIAS.filter(m => {
-      const matchTexto = m.nombre.toLowerCase().includes(filtroTexto) || m.codigo.toLowerCase().includes(filtroTexto);
+      const matchTexto = m.nombre.toLowerCase().includes(filtroTexto) ||
+                         m.codigo.toLowerCase().includes(filtroTexto);
       const matchTrim = filtroTrim === '' || m.trimestre.toString() === filtroTrim;
       return matchTexto && matchTrim;
     });
@@ -25,12 +28,22 @@ const Catalogo = {
         <div>
           <h3>${m.codigo} - ${m.nombre}</h3>
           <p>Trimestre: ${m.trimestre} | UC: ${m.uc}</p>
-          <p>Secciones disponibles: ${m.secciones.length}</p>
+          <p>Secciones disponibles: ${(m.secciones || []).length}</p>
         </div>
-        <button class="primary-btn" onclick="Seleccion.toggleMateria('${m.codigo}')">
+        <button class="primary-btn">
           ${Seleccion.estaSeleccionada(m.codigo) ? 'Ver / Modificar Secciones' : 'Seleccionar Materia'}
         </button>
       `;
+      const btn = card.querySelector('button');
+      btn.addEventListener('click', () => {
+        const estaba = Seleccion.estaSeleccionada(m.codigo);
+        Seleccion.toggleMateria(m.codigo);
+
+        if (estaba) {
+          const tab = document.querySelector('[data-view="seleccion"]');
+          if (tab) tab.click();
+        }
+      });
       contenedor.appendChild(card);
     });
   }

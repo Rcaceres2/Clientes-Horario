@@ -1,12 +1,32 @@
 const HorarioDefinitivo = {
+  MAPA_DIAS: {
+    'LUN': 'LUNES',
+    'MAR': 'MARTES',
+    'MIE': 'MIERCOLES',
+    'JUE': 'JUEVES',
+    'VIE': 'VIERNES',
+    'SAB': 'SABADO'
+  },
+
   cargar() {
     const tabResumen = document.getElementById('tab-resumen');
     if (tabResumen) tabResumen.disabled = false;
-    
+
     const btnResumen = document.querySelector('[data-view="resumen"]');
     if (btnResumen) btnResumen.click();
-    
+
     this.renderRejilla();
+  },
+
+  _normalizarDia(dia) {
+    return (dia || '').trim().toUpperCase()
+      .replace('Á', 'A').replace('É', 'E').replace('Í', 'I')
+      .replace('Ó', 'O').replace('Ú', 'U');
+  },
+
+  _diaCompleto(diaCorto) {
+    const d = this._normalizarDia(diaCorto);
+    return this.MAPA_DIAS[d] || d;
   },
 
   renderRejilla() {
@@ -21,7 +41,7 @@ const HorarioDefinitivo = {
             if (h.bloques && Array.isArray(h.bloques)) {
               h.bloques.forEach(bId => {
                 sesionesTodas.push({
-                  dia: h.dia ? h.dia.trim().toUpperCase() : '',
+                  dia: this._normalizarDia(h.dia),
                   bloqueId: String(bId).trim().toUpperCase(),
                   materia: m.nombre,
                   seccion: m.seccionSeleccionada.id || m.seccionSeleccionada.numero || 'Única'
@@ -46,9 +66,7 @@ const HorarioDefinitivo = {
     `;
 
     const grid = contenedor.querySelector('.horario-grid');
-    const diasSemana = ['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
-    const diasCortos = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB'];
-
+    const diasSemana = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO'];
     const listaBloques = (typeof BLOQUES !== 'undefined' && Array.isArray(BLOQUES)) ? BLOQUES : [];
 
     listaBloques.forEach(b => {
@@ -57,26 +75,24 @@ const HorarioDefinitivo = {
       celdaHora.textContent = `${b.inicio || ''} - ${b.fin || ''}`;
       grid.appendChild(celdaHora);
 
-      diasSemana.forEach((diaColumna, indexDia) => {
+      const idFila = String(b.id || '').trim().toUpperCase();
+
+      diasSemana.forEach(diaColumna => {
         const celda = document.createElement('div');
         celda.className = 'horario-cell';
-        
-        const diaCorto = diasCortos[indexDia];
 
         const encontradas = sesionesTodas.filter(s => {
-          const coincideDia = s.dia.includes(diaColumna) || s.dia.includes(diaCorto) || diaColumna.includes(s.dia);
-          
-          const idBloqueFila = String(b.id || '').trim().toUpperCase();
-          const coincideBloque = s.bloqueId === idBloqueFila || 
-                                 s.bloqueId.includes(idBloqueFila) || 
-                                 idBloqueFila.includes(s.bloqueId);
-
+          const diaCompleto = this._diaCompleto(s.dia);
+          const coincideDia = diaCompleto === diaColumna;
+          const coincideBloque = s.bloqueId === idFila;
           return coincideDia && coincideBloque;
         });
 
         if (encontradas.length > 0) {
           celda.style.backgroundColor = '#dbeafe';
-          celda.innerHTML = encontradas.map(e => `<strong>${e.materia}</strong><br><small>Sec: ${e.seccion}</small>`).join('<hr style="margin:2px 0">');
+          celda.innerHTML = encontradas
+            .map(e => `<strong>${e.materia}</strong><br><small>Sec: ${e.seccion}</small>`)
+            .join('<hr style="margin:2px 0">');
         }
 
         grid.appendChild(celda);

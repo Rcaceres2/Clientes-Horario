@@ -1,6 +1,6 @@
 const Tiempo = {
   horaAMinutos(horaStr) {
-    const [h, m] = horaStr.split(":").map(Number);
+    const [h, m] = horaStr.split(':').map(Number);
     return h * 60 + m;
   },
 
@@ -10,17 +10,26 @@ const Tiempo = {
     return `${h}:${m}`;
   },
 
+  _normalizarDia(dia) {
+    return (dia || '').trim().toUpperCase()
+      .replace('Á', 'A').replace('É', 'E').replace('Í', 'I')
+      .replace('Ó', 'O').replace('Ú', 'U');
+  },
+
   seSesionesChocan(sesionA, sesionB) {
-    if (sesionA.dia !== sesionB.dia) return false;
-    
-    const rangosA = sesionA.bloques.map(idB => {
-      const b = BLOQUES.find(x => x.id === idB);
+    if (this._normalizarDia(sesionA.dia) !== this._normalizarDia(sesionB.dia)) return false;
+
+    const rangosA = (sesionA.bloques || []).map(idB => {
+      const b = BLOQUES.find(x => String(x.id) === String(idB));
+      if (!b) return null;
       return { inicio: this.horaAMinutos(b.inicio), fin: this.horaAMinutos(b.fin) };
-    });
-    const rangosB = sesionB.bloques.map(idB => {
-      const b = BLOQUES.find(x => x.id === idB);
+    }).filter(Boolean);
+
+    const rangosB = (sesionB.bloques || []).map(idB => {
+      const b = BLOQUES.find(x => String(x.id) === String(idB));
+      if (!b) return null;
       return { inicio: this.horaAMinutos(b.inicio), fin: this.horaAMinutos(b.fin) };
-    });
+    }).filter(Boolean);
 
     for (let rA of rangosA) {
       for (let rB of rangosB) {

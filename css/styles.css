@@ -135,6 +135,13 @@ flex-direction: column;
 justify-content: space-between;
 }
 
+#lista-seleccionadas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .card h3 {
 font-size: 1.1rem;
 margin-bottom: 0.5rem;
@@ -157,7 +164,22 @@ background-color: var(--primary-dark);
 }
 
 .secondary-btn {
-background-color: #64748b;
+  background: #f8d4d4;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #3e0808;
+  cursor: pointer;
+  border-radius: 4px;
+  width: auto;        
+  align-self: flex-start;
+  margin-top: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #f4cdcd;
 }
 
 .preferences-box {

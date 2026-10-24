@@ -67,25 +67,30 @@
 
     <section id="vista-generador" class="view">
       <h2>Generador Automático de Horarios</h2>
+      
       <div class="preferences-box">
         <h3>Preferencias de Horario</h3>
-        <label>
-            <p> En esta seccion, usted podrá establecer sus preferencias de horario
-            si desea priorizar clases en la mañana o en la tarde, escoga la opcion que mas se ajuste a sus necesidades
-            Solo se tienen dos horarios, uno de 7:00am a 12:00pm y otro de 12:00pm a 6:00pm
+        
+        <p class="pref-descripcion">
+          En esta sección, usted podrá establecer sus preferencias de horario si desea priorizar clases en la mañana o en la tarde, escoja la opción que más se ajuste a sus necesidades. Solo se tienen dos horarios, uno de 7:00am a 12:00pm y otro de 12:00pm a 6:00pm.
+          <br><br>
+          Si no desea priorizar ninguna hora en específico para su horario, deje ambas opciones sin seleccionar.
+        </p>
 
-            Si no desea priorizar ninguna hora en especifico para su horario, deje ambas opciones sin seleccionar. </p>
-          </p>
-          <input type="checkbox" id="pref-mananas"> Priorizar Clases en la Mañana (Horario de 7:00am a 12:00pm)
-        </label>
-        <label>
-          <input type="checkbox" id="pref-tardes"> Priorizar Clases en la Tarde (Horario de 12:00pm a 6:00pm)  
-        </label>
-        <label>
-          <input type="range" id="pref-ventanas" min="0" max="2" value="1">
-        </label>
-        <button id="btn-generar" class="primary-btn">Generar Combinaciones</button>
+        <div class="pref-opciones">
+          <label>
+            <input type="checkbox" id="pref-mananas"> 
+            Priorizar Clases en la Mañana (Horario de 7:00am a 12:00pm)
+          </label>
+          
+          <label>
+            <input type="checkbox" id="pref-tardes"> 
+            Priorizar Clases en la Tarde (Horario de 12:00pm a 6:00pm)
+          </label>
+        </div>
       </div>
+
+      <button id="btn-generar" class="primary-btn">Generar Combinaciones</button>
       <div id="resultados-generador"></div>
     </section>
 

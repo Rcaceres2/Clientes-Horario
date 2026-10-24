@@ -45,6 +45,14 @@
 
     <section id="vista-manual" class="view">
       <h2>Registro Manual de Secciones</h2>
+      <p>Mediante el siguiente formulario, puede agregar materias a su horario de manera manual.</p>
+      <strong> PASO 1: </strong>
+      <p>Seleccione una materia en el boton de búsqueda.</p>
+      <strong> PASO 2: </strong>
+      <p>Seleccione una sección de la materia previamente escogida. (Ej: Calculo 1 - Sección 001, Prof. Jubert Pérez)</p>
+      <strong> PASO 3: </strong>
+      <p>Haga click en el botón "Agregar sección" para añadir la sección a su horario. Recuerde que puede agregar hasta 28 UC en total.
+      </p>
       <form id="form-manual">
         <select id="select-mat-manual" required>
           <option value="">Seleccione una materia</option>
@@ -62,10 +70,16 @@
       <div class="preferences-box">
         <h3>Preferencias de Horario</h3>
         <label>
-          <input type="checkbox" id="pref-mananas"> Priorizar Clases en la Mañana
+            <p> En esta seccion, usted podrá establecer sus preferencias de horario
+            si desea priorizar clases en la mañana o en la tarde, escoga la opcion que mas se ajuste a sus necesidades
+            Solo se tienen dos horarios, uno de 7:00am a 12:00pm y otro de 12:00pm a 6:00pm
+
+            Si no desea priorizar ninguna hora en especifico para su horario, deje ambas opciones sin seleccionar. </p>
+          </p>
+          <input type="checkbox" id="pref-mananas"> Priorizar Clases en la Mañana (Horario de 7:00am a 12:00pm)
         </label>
         <label>
-          <input type="checkbox" id="pref-tardes"> Priorizar Clases en la Tarde
+          <input type="checkbox" id="pref-tardes"> Priorizar Clases en la Tarde (Horario de 12:00pm a 6:00pm)  
         </label>
         <label>
           <input type="range" id="pref-ventanas" min="0" max="2" value="1">
